@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>D3 Pump</title>
+  <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+  </div>
+  <button onclick="startPump()">Start Fan</button>
+  <button onclick="stopPump()">Stop Fan</button>
+  <br>
+  <br>
+  <button onclick="alarmOn()">Alarm On</button>
+  <button onclick="alarmOff()">Alarm Off</button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script src="js/d3-pump.js"></script>
+  <script>
+  var pump = createPump({
+    selector: $(".wrapper")[0]
+  });
+  pump.startPump();
+  pump.click(function() {
+    if (pump.spinning === true) {
+      pump.stopPump();
+    } else if (pump.spinning === false) {
+      pump.startPump();
+    }
+  });
+
+  function startPump() {
+    pump.startPump();
+  }
+
+  function stopPump() {
+    pump.stopPump();
+  }
+
+  function alarmOn() {
+    pump.alarmOn();
+    pump.stopPump();
+  }
+
+  function alarmOff() {
+    pump.alarmOff();
+    pump.stopPump();
+  }
+  </script>
+</body>
+
+</html>
